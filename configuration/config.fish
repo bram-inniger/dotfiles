@@ -2,6 +2,8 @@
 set -gx GPG_TTY (tty)
 set -gx EDITOR vim
 set -gx VISUAL vim
+set -gx LANG en_US.UTF-8
+set -gx LC_ALL en_US.UTF-8
 
 ### Aliases ###
 alias ll="ls -ahl"
