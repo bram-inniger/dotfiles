@@ -1,0 +1,18 @@
+[user]
+	name = Bram Inniger
+	email = bram@inniger.be
+[core]
+	autocrlf = input
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[diff]
+	tool = idea
+[difftool "idea"]
+	cmd = idea diff $LOCAL $REMOTE
+[merge]
+	tool = idea
+[mergetool "idea"]
+	cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
+	trustExitCode = true
