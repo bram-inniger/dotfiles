@@ -35,7 +35,7 @@ function up --description 'Update the system'
 end
 
 function deheic --description 'Un-HEIC received pictures'
-    cd ~/Downloads
+    pushd ~/Downloads
 
     set -l u_heic *.HEIC
     set -l l_heic *.heic
@@ -50,7 +50,7 @@ function deheic --description 'Un-HEIC received pictures'
         rm *.heic
     end
 
-    cd -
+    popd
 end
 
 function asciiart --description 'Pretty print cool ASCII art'
@@ -61,7 +61,7 @@ end
 
 function gu --description 'Update local git projects'
     for dir in ~/Development/*/
-        cd $dir
+        pushd $dir
 
         set project (basename (pwd))
         set branch (git branch --show-current)
@@ -78,8 +78,12 @@ function gu --description 'Update local git projects'
             set_color normal
         end
         echo "-----------------------------------------------------------------"
-        cd -
+        popd
     end
+end
+
+function git-clone-user --description 'Clone all first 100 repos of a user'
+    curl -s "https://api.github.com/users/$argv[1]/repos?per_page=100" | jq -r ".[].git_url" | xargs -L1 git clone
 end
 
 ### Fish config ###
