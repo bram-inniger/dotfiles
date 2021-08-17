@@ -1,18 +1,49 @@
 [user]
-	name = Bram Inniger
-	email = bram@inniger.be
+    name = Bram Inniger
+    email = bram@inniger.be
+
+[alias]
+    co = checkout
+    d = diff -M -p --stat
+    s = show -M -p --stat
+    st = status -s
+    l = log --pretty=oneline --graph --abbrev-commit --all
+    tree = log --graph --oneline --all --color=always
+
 [core]
-	autocrlf = input
+    autocrlf = input
+    commitGraph = true
+
+[color]
+    ui = auto
+
+[color "diff"]
+    newMoved = green bold
+    oldMoved = red bold
+
+[checkout]
+    defaultRemote = origin
+
 [pull]
-	rebase = false
+    rebase = false
+
 [init]
-	defaultBranch = main
+    defaultBranch = main
+
 [diff]
-	tool = idea
+    tool = idea
+    indentHeuristic = true
+    colorMoved = true
+
 [difftool "idea"]
-	cmd = idea diff $LOCAL $REMOTE
+    cmd = idea diff $LOCAL $REMOTE
+
 [merge]
-	tool = idea
+    tool = idea
+
 [mergetool "idea"]
-	cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
-	trustExitCode = true
+    cmd = idea merge $LOCAL $REMOTE $BASE $MERGED
+    trustExitCode = true
+
+[feature]
+    experimental = true
