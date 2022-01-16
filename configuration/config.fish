@@ -37,10 +37,13 @@ end
 function kernel --description 'Show installed and available kernel versions'
     switch (uname)
         case Darwin
-            echo "Operation not yet supported"
+            echo "Installed:" (uname -v | awk -F '[ :]' '{print $4}')
+            echo "Available: please run 'softwareupdate -l' for available updates"
         case Linux
-            echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | cut -d ' ' -f 2)
-            echo "Available:" (uname -v | cut -d ' ' -f 4)
+            echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | awk '{print $2}')
+            echo "Available:" (uname -v | awk '{print $4}')
+        case '*'
+            echo "Your OS" (uname) "is not supported by this script"
     end
 end
 
