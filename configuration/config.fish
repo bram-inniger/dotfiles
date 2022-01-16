@@ -39,7 +39,7 @@ function kernel --description 'Show installed and available kernel versions'
         case Darwin
             echo "Operation not yet supported"
         case Linux
-            echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | cut -f ' ' -d 2)
+            echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | cut -d ' ' -f 2)
             echo "Available:" (uname -v | cut -d ' ' -f 4)
     end
 end
