@@ -2,6 +2,7 @@
 set -gx GPG_TTY (tty)
 set -gx EDITOR vim
 set -gx VISUAL vim
+set -gx PAGER most
 set -gx LANG en_US.UTF-8
 set -gx LC_ALL en_US.UTF-8
 
@@ -42,6 +43,7 @@ function kernel --description 'Show installed and available kernel versions'
         case Linux
             echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | awk '{print $2}')
             echo "Available:" (uname -v | awk '{print $4}')
+            echo "Last updated:" (apt-get changelog linux-image-cloud-amd64/unstable | grep " --" | head -n 1 | awk -F '  ' '{print $2}')
         case '*'
             echo "Your OS" (uname) "is not supported by this script"
     end
