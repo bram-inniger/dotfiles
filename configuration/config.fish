@@ -34,6 +34,16 @@ function up --description 'Update the system'
     end
 end
 
+function kernel --description 'Show installed and available kernel versions'
+    switch (uname)
+        case Darwin
+            echo "Operation not yet supported"
+        case Linux
+            echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | cut -f ' ' -d 2)
+            echo "Available:" (uname -v | cut -d ' ' -f 4)
+    end
+end
+
 function deheic --description 'Un-HEIC received pictures'
     pushd ~/Downloads
 
