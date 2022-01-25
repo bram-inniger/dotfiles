@@ -43,7 +43,7 @@ function kernel --description 'Show installed and available kernel versions'
         case Linux
             echo "Installed:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | awk '{print $2}')
             echo "Available:" (uname -v | awk '{print $4}')
-            echo "Last updated:" (apt-get changelog linux-image-cloud-amd64/unstable | grep " --" | head -n 1 | awk -F '  ' '{print $2}')
+            echo "Last updated:" (apt-get changelog linux-image-cloud-amd64/unstable | grep -e "^ --" | head -n 1 | awk -F '  ' '{print $2}')
         case '*'
             echo "Your OS" (uname) "is not supported by this script"
     end
