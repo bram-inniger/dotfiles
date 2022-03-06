@@ -41,7 +41,7 @@ function kernel --description 'Show installed and available kernel versions'
             echo "Installed:" (uname -v | awk -F '[ :]' '{print $4}')
             echo "Available: please run 'softwareupdate -l' for available updates"
         case Linux
-            echo "Installed:" (uname -v | awk '{print $4}')
+            echo "Installed:" (uname -v | awk '{print $5}')
             echo "Available:" (apt-cache show linux-image-cloud-amd64/unstable | grep Version | awk '{print $2}')
             echo "Last updated:" (apt-get changelog linux-image-cloud-amd64/unstable | grep -e "^ --" | head -n 1 | awk -F '  ' '{print $2}')
         case '*'
